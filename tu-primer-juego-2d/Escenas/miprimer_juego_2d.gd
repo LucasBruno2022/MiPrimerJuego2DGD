@@ -5,6 +5,7 @@ var score: int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	new_game()
 	pass
 
 
@@ -17,6 +18,8 @@ func game_over():
 	$ScoreTimer.stop()
 	$MobTimer.stop()
 	$HUB.show_game_over()
+	$musica.stop()
+	$deathsound.play()
 	pass # Replace with function body.
 	
 func new_game():
@@ -26,6 +29,8 @@ func new_game():
 	$HUB.update_score(score)
 	$HUB.show_message("get ready")
 	get_tree().call_group("mobs", "queue_free")
+	$musica.play()
+	
 	pass # Replace with function body.
 
 

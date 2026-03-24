@@ -41,10 +41,10 @@ func _process(delta):
 		$AnimatedSprite2D.animation = "arriba"
 		$AnimatedSprite2D.flip_v = velocity.y > 0
 	
-	
 	pass
 
 
+@warning_ignore("unused_parameter")
 func _on_body_entered(body):
 	hide() # Player disappears after being hit.
 	hit.emit()

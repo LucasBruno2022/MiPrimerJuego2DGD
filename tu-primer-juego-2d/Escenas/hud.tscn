@@ -3,6 +3,12 @@
 [ext_resource type="FontFile" uid="uid://cjcoqme16syqp" path="res://dodge_the_creeps_2d_assets/dodge_the_creeps_2d_assets/fonts/Xolonium-Regular.ttf" id="1_4nel0"]
 [ext_resource type="Script" uid="uid://xpfyrngcfmxd" path="res://Escenas/hud.gd" id="1_v1vk6"]
 
+[sub_resource type="InputEventAction" id="InputEventAction_v1vk6"]
+action = &"start_game"
+
+[sub_resource type="Shortcut" id="Shortcut_5x6hg"]
+events = [SubResource("InputEventAction_v1vk6")]
+
 [node name="HUB" type="CanvasLayer" unique_id=43595899]
 script = ExtResource("1_v1vk6")
 
@@ -53,6 +59,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("1_4nel0")
 theme_override_font_sizes/font_size = 64
+shortcut = SubResource("Shortcut_5x6hg")
 text = "Start"
 
 [node name="MassageTimer" type="Timer" parent="." unique_id=1116442538]
