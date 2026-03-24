@@ -1,3 +1,68 @@
 [gd_scene format=3 uid="uid://b1e5uibwrtl8l"]
 
-[node name="Mob" type="Node2D" unique_id=156186591]
+[ext_resource type="Texture2D" uid="uid://nfs0ygfka35b" path="res://dodge_the_creeps_2d_assets/dodge_the_creeps_2d_assets/art/enemyFlyingAlt_1.png" id="1_1cn8u"]
+[ext_resource type="Script" uid="uid://dgj3xxtlpcpmy" path="res://Escenas/mob.gd" id="1_ag3aj"]
+[ext_resource type="Texture2D" uid="uid://u2cagx1lyxe" path="res://dodge_the_creeps_2d_assets/dodge_the_creeps_2d_assets/art/enemyFlyingAlt_2.png" id="2_ag3aj"]
+[ext_resource type="Texture2D" uid="uid://co45t2h7o4mvi" path="res://dodge_the_creeps_2d_assets/dodge_the_creeps_2d_assets/art/enemySwimming_1.png" id="3_i2gqx"]
+[ext_resource type="Texture2D" uid="uid://ct64gpahl0t5r" path="res://dodge_the_creeps_2d_assets/dodge_the_creeps_2d_assets/art/enemySwimming_2.png" id="4_y108j"]
+[ext_resource type="Texture2D" uid="uid://0wl3dv8qc6sv" path="res://dodge_the_creeps_2d_assets/dodge_the_creeps_2d_assets/art/enemyWalking_1.png" id="5_4hulj"]
+[ext_resource type="Texture2D" uid="uid://c0we45jt3ma2o" path="res://dodge_the_creeps_2d_assets/dodge_the_creeps_2d_assets/art/enemyWalking_2.png" id="6_djiby"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ouer3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_1cn8u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ag3aj")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_i2gqx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_y108j")
+}],
+"loop": true,
+"name": &"swin",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_4hulj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_djiby")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 3.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xx0qd"]
+radius = 36.0
+height = 100.0
+
+[node name="mob" type="RigidBody2D" unique_id=343682253]
+collision_mask = 0
+gravity_scale = 0.0
+script = ExtResource("1_ag3aj")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1818278458]
+rotation = 1.5707964
+scale = Vector2(0.75, 0.75)
+sprite_frames = SubResource("SpriteFrames_ouer3")
+animation = &"walk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=683407154]
+shape = SubResource("CapsuleShape2D_xx0qd")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=995326977]
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
