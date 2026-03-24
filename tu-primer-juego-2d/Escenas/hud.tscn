@@ -1,3 +1,63 @@
 [gd_scene format=3 uid="uid://cmrgq5atgfv86"]
 
-[node name="HUD" type="Node2D" unique_id=1442907257]
+[ext_resource type="FontFile" uid="uid://cjcoqme16syqp" path="res://dodge_the_creeps_2d_assets/dodge_the_creeps_2d_assets/fonts/Xolonium-Regular.ttf" id="1_4nel0"]
+[ext_resource type="Script" uid="uid://xpfyrngcfmxd" path="res://Escenas/hud.gd" id="1_v1vk6"]
+
+[node name="HUB" type="CanvasLayer" unique_id=43595899]
+script = ExtResource("1_v1vk6")
+
+[node name="ScoreLabel" type="Label" parent="." unique_id=1099152013]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -239.25
+offset_right = 239.25
+offset_bottom = 78.0
+grow_horizontal = 2
+size_flags_horizontal = 0
+theme_override_fonts/font = ExtResource("1_4nel0")
+theme_override_font_sizes/font_size = 64
+text = "0"
+
+[node name="Massage" type="Label" parent="." unique_id=411051859]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -240.0
+offset_top = -79.5
+offset_right = 240.0
+offset_bottom = 79.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_4nel0")
+theme_override_font_sizes/font_size = 64
+text = "dodg the creeps!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="startButton" type="Button" parent="." unique_id=928233215]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = 220.0
+offset_right = 100.0
+offset_bottom = 320.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_4nel0")
+theme_override_font_sizes/font_size = 64
+text = "Start"
+
+[node name="MassageTimer" type="Timer" parent="." unique_id=1116442538]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="pressed" from="startButton" to="." method="_on_start_button_pressed"]
+[connection signal="timeout" from="MassageTimer" to="." method="_on_massage_timer_timeout"]

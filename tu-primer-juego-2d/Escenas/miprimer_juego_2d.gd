@@ -16,12 +16,16 @@ func _process(_delta):
 func game_over():
 	$ScoreTimer.stop()
 	$MobTimer.stop()
+	$HUB.show_game_over()
 	pass # Replace with function body.
 	
 func new_game():
 	score = 0
-	$Jugador.start($StartPosition.position)
-	$StartTimer.start()
+	$Jugador.start($StartPosicion.position)
+	$StarTimer.start()
+	$HUB.update_score(score)
+	$HUB.show_message("get ready")
+	get_tree().call_group("mobs", "queue_free")
 	pass # Replace with function body.
 
 
@@ -32,7 +36,7 @@ func _on_mob_timer_timeout():
 	var mob = mob_scene.instantiate()
 
 	# Choose a random location on Path2D.
-	var mob_spawn_location = $MobPath/MobSpawnLocation
+	var mob_spawn_location = $MobPath/MobSpaw
 	mob_spawn_location.progress_ratio = randf()
 
 	# Set the mob's position to the random location.
@@ -56,6 +60,8 @@ func _on_mob_timer_timeout():
 
 func _on_score_timer_timeout():
 	score += 1
+	$HUB.update_score(score)
+
 	pass # Replace with function body.
 
 

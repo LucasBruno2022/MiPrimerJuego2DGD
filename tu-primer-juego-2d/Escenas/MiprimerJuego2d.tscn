@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bel6t30kc1q2w" path="res://Escenas/miprimer_juego_2d.gd" id="1_ahgv4"]
 [ext_resource type="PackedScene" uid="uid://spj1ny2jcotn" path="res://Escenas/jugador.tscn" id="1_dxisy"]
 [ext_resource type="PackedScene" uid="uid://b1e5uibwrtl8l" path="res://Escenas/mob.tscn" id="2_dka7c"]
+[ext_resource type="PackedScene" uid="uid://cmrgq5atgfv86" path="res://Escenas/hud.tscn" id="4_sy6tl"]
 
 [sub_resource type="Curve2D" id="Curve2D_dxisy"]
 _data = {
@@ -35,8 +36,11 @@ curve = SubResource("Curve2D_dxisy")
 position = Vector2(8, 8)
 rotation = -0.016947528
 
+[node name="HUB" parent="." unique_id=43595899 groups=["mob"] instance=ExtResource("4_sy6tl")]
+
 [connection signal="hit" from="Jugador" to="." method="game_over"]
 [connection signal="hit" from="Jugador" to="." method="new_game"]
 [connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
 [connection signal="timeout" from="StarTimer" to="." method="_on_star_timer_timeout"]
+[connection signal="start_game" from="HUB" to="." method="new_game"]
